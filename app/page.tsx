@@ -1,65 +1,133 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useAuth } from "@/contexts/AuthContext";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  Users,
+  Globe,
+  Sparkles,
+  MessageCircle,
+  HeartHandshake,
+} from "lucide-react";
+
+export default function CommunityLanding() {
+  const { user, signInWithCrowbar } = useAuth();
+
+  const categories = [
+    {
+      name: "Tech Innovators",
+      slug: "tech",
+      icon: <Globe className="w-10 h-10 text-blue-600" />,
+    },
+    {
+      name: "Career Builders",
+      slug: "career",
+      icon: <Users className="w-10 h-10 text-purple-600" />,
+    },
+    {
+      name: "Eco Warriors",
+      slug: "eco",
+      icon: <Sparkles className="w-10 h-10 text-green-600" />,
+    },
+    {
+      name: "Wellness Tribe",
+      slug: "wellness",
+      icon: <HeartHandshake className="w-10 h-10 text-rose-600" />,
+    },
+    {
+      name: "Global Community",
+      slug: "global",
+      icon: <MessageCircle className="w-10 h-10 text-indigo-600" />,
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="relative max-w-7xl mx-auto px-6 pb-28 pt-20">
+
+      {/* BACKGROUND GLOW */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-80 h-80 bg-indigo-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-0 w-80 h-80 bg-purple-300/30 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* HERO */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="inline-block px-5 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-slate-200 text-sm text-slate-700 shadow-sm mb-6"
+        >
+          Crowbar Connected Network
+        </motion.div>
+
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+          Welcome to
+          <span className="block bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+            Crowbar Circle
+          </span>
+        </h1>
+
+        <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mt-4 leading-relaxed">
+          Explore niche communities, share ideas, collaborate, and grow together.
+          Built exclusively for the Crowbar members.
+        </p>
+
+        {/* LOGIN CTA */}
+        {!user && (
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            onClick={signInWithCrowbar}
+            className="mt-10 px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Login to Access Communities
+          </motion.button>
+        )}
+      </motion.div>
+
+      {/* COMMUNITY GRID */}
+      {user && (
+        <div className="grid md:grid-cols-3 gap-10 mt-24">
+          {categories.map((c, i) => (
+            <motion.div
+              key={c.slug}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="group p-10 rounded-3xl bg-white/80 backdrop-blur-lg border border-slate-200 shadow-md hover:shadow-xl cursor-pointer transition relative overflow-hidden"
+            >
+              {/* Card Glow */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-blue-500/10 blur-xl transition"></div>
+
+              {/* Icon */}
+              <div className="relative z-10 flex justify-center mb-6">{c.icon}</div>
+
+              {/* Name */}
+              <h3 className="relative z-10 text-xl font-semibold text-slate-900 mb-3">
+                {c.name}
+              </h3>
+
+              {/* Description */}
+              <p className="relative z-10 text-slate-600 mb-6">
+                Connect with like-minded members of the Crowbar network.
+              </p>
+
+              {/* Button */}
+              <Link
+                href={`/category/${c.slug}`}
+                className="relative z-10 inline-block px-4 py-2 w-full text-center rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition"
+              >
+                Explore
+              </Link>
+            </motion.div>
+          ))}
         </div>
-      </main>
+      )}
     </div>
   );
 }
