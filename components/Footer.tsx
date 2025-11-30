@@ -1,35 +1,37 @@
 export default function Footer() {
   return (
-    <footer className="mt-28 py-10 bg-gradient-to-br from-white/80 to-slate-100/70 backdrop-blur-xl border-t border-slate-200 relative overflow-hidden">
+    <footer className="w-full py-14 mt-28 relative bg-gradient-to-br from-[#141128] via-[#1A1535] to-[#0F0C20] border-t border-white/5 overflow-hidden">
       
-      {/* Glow Background */}
-      <div className="absolute inset-0 -z-10 opacity-40">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-indigo-300/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-purple-300/20 rounded-full blur-3xl"></div>
+      {/* Background Glow Effects */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute -top-20 left-1/3 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 right-1/4 w-[28rem] h-[28rem] bg-indigo-600/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center text-center">
-        
-        {/* Footer Logo */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md shadow-indigo-400/40">
-            <span className="text-white font-bold text-lg">C</span>
+      <div className="relative max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-10">
+
+        {/* Left Logo Block */}
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
+            <span className="text-white font-bold text-lg tracking-tight">CB</span>
           </div>
 
-          <div className="text-left">
-            <span className="font-semibold text-slate-900 text-lg">Crowbar Circle</span>
-            <div className="text-xs text-slate-500">Community Hub</div>
+          <div>
+            <p className="text-lg font-semibold text-white">Crowbar Circle</p>
+            <p className="text-sm text-slate-400 -mt-1">Community Hub</p>
           </div>
         </div>
 
-        {/* Footer Text */}
-        <p className="text-sm text-slate-600">
-          © 2024 Crowbar Circle — Part of the Crowbar Connected Network
-        </p>
+        {/* Right Side Text */}
+        <div className="text-center md:text-right">
+          <p className="text-sm text-white font-medium">
+            © 2024 Crowbar Connected Network
+          </p>
+          <p className="text-xs text-slate-400 mt-1">
+            Empowering Creators • Unified Ecosystem • Growth Engine
+          </p>
+        </div>
 
-        <p className="text-xs text-slate-500 mt-2">
-          Empowering communities through collaboration & learning
-        </p>
       </div>
     </footer>
   );

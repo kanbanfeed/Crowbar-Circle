@@ -19,7 +19,7 @@ export default function Navbar() {
       {/* Soft Aura Glow */}
       <div className="absolute inset-x-0 -top-6 h-10 bg-gradient-to-r from-indigo-500/25 via-purple-500/25 to-pink-500/25 blur-2xl pointer-events-none"></div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="relative w-full px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
@@ -67,7 +67,7 @@ export default function Navbar() {
               animate={{ opacity: 1, x: 0 }}
               className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition flex items-center gap-2"
             >
-              <LogIn className="w-4 h-4" /> Login
+              <LogIn className="w-4 h-4" /> Login with Crowbar
             </motion.button>
           ) : (
             <motion.button
