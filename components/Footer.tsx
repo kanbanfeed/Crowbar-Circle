@@ -25,7 +25,7 @@ export default function Footer() {
         {/* Right Side Text */}
         <div className="text-center md:text-right">
           <p className="text-sm text-white font-medium">
-            © 2024 Crowbar Connected Network
+            © 2025 Crowbar Connected Network
           </p>
           <p className="text-xs text-slate-400 mt-1">
             Empowering Creators • Unified Ecosystem • Growth Engine
